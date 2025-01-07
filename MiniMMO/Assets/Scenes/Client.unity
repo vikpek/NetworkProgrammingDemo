@@ -951,8 +951,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: -4}
+  m_LocalRotation: {x: 0.13292086, y: 0, z: 0, w: 0.99112666}
+  m_LocalPosition: {x: 0, y: 1.776, z: -4.178}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1051,6 +1051,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6007020647637811864, guid: 00a760df6e6bccb4d9005466de591b52, type: 3}
+      propertyPath: NetworkConfig.ForceSamePrefabs
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007020647637811864, guid: 00a760df6e6bccb4d9005466de591b52, type: 3}
+      propertyPath: 'NetworkConfig.Prefabs.NetworkPrefabsLists.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 294aeff0ea159f249afe919a2b3d6681, type: 2}
     - target: {fileID: 8292185782184016617, guid: 00a760df6e6bccb4d9005466de591b52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
