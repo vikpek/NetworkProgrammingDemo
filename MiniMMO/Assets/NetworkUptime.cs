@@ -1,11 +1,19 @@
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
-
+using UnityEngine.Assertions;
 public class NetworkUptime : NetworkBehaviour
 {
     private NetworkVariable<float> ServerUptimeNetworkVariable = new NetworkVariable<float>();
     private float last_t = 0.0f;
 
+    [SerializeField] private TextMeshPro text;
+
+
+    private void Start()
+    {
+           Assert.IsNotNull(text);
+    }
     public override void OnNetworkSpawn()
     {
         if (IsServer)
@@ -26,6 +34,11 @@ public class NetworkUptime : NetworkBehaviour
                 last_t = t_now;
                 Debug.Log("Server uptime var has been updated to: " + ServerUptimeNetworkVariable.Value);
             }
+        }
+
+        if (!IsServer)
+        {
+            text.text = ServerUptimeNetworkVariable.Value.ToString();
         }
     }
 }

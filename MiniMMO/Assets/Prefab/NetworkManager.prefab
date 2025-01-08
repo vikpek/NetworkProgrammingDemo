@@ -52,7 +52,7 @@ MonoBehaviour:
     PlayerPrefab: {fileID: 5337840516724893617, guid: 43995499c7dfcf54699674ad82c60b83, type: 3}
     Prefabs:
       NetworkPrefabsLists:
-      - {fileID: 11400000, guid: 2f8764d2080ec2447b9a229992d13d54, type: 2}
+      - {fileID: 11400000, guid: 294aeff0ea159f249afe919a2b3d6681, type: 2}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
     TimeResyncInterval: 30
     EnsureNetworkVariableLengthSafety: 0
     EnableSceneManagement: 0
-    ForceSamePrefabs: 1
+    ForceSamePrefabs: 0
     RecycleNetworkIds: 1
     NetworkIdRecycleDelay: 120
     RpcHashSize: 0
