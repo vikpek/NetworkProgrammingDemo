@@ -32,7 +32,7 @@ public class NetworkUptime : NetworkBehaviour
             if (t_now - last_t > 0.5f)
             {
                 last_t = t_now;
-                Debug.Log("Server uptime var has been updated to: " + ServerUptimeNetworkVariable.Value);
+                // Debug.Log("Server uptime var has been updated to: " + ServerUptimeNetworkVariable.Value);
             }
         }
 
