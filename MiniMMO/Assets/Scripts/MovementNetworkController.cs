@@ -3,24 +3,50 @@ using UnityEngine;
 
 public class MovementNetworkController : NetworkBehaviour
 {
-    public NetworkVariable<Vector3> Position = new();
+    public NetworkVariable<Vector3> Position = new(writePerm: NetworkVariableWritePermission.Server);
 
-    [Rpc(SendTo.Server)]
-    void SubmitPositionRequestServerRpc(Vector3 position, RpcParams rpcParams = default) => Position.Value = position;
-
-    void Update()
+    private void Awake()
     {
-        if (IsOwner && !IsServer)
+        Position.OnValueChanged += OnPositionChanged;
+    }
+
+    private void OnDestroy()
+    {
+        Position.OnValueChanged -= OnPositionChanged;
+    }
+
+    [ServerRpc]
+    void SubmitPositionRequestServerRpc(Vector3 position)
+    {
+        Position.Value = position;
+    }
+
+    private void Update()
+    {
+        if (IsOwner)
         {
             float moveX = Input.GetAxis("Horizontal");
             float moveZ = Input.GetAxis("Vertical");
 
-            Vector3 movement = new Vector3(moveX, 0f, moveZ) * 5 * Time.deltaTime;
+            Vector3 movement = new Vector3(moveX, 0f, moveZ) * 5f * Time.deltaTime;
             transform.Translate(movement, Space.World);
+
+            // Send the new position to the server
             SubmitPositionRequestServerRpc(transform.position);
         }
 
-        if (IsServer)
+        if (!IsOwner && !IsServer)
+        {
+            // Ensure the position is updated for non-owners
             transform.position = Position.Value;
+        }
+    }
+
+    private void OnPositionChanged(Vector3 oldPosition, Vector3 newPosition)
+    {
+        if (!IsOwner)
+        {
+            transform.position = newPosition;
+        }
     }
 }
